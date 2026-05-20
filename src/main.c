@@ -7,15 +7,20 @@ const int width = 900;
 int menu = 1;
 
 
+
 int main() {
     InitWindow(width, height, "Tetris!");
     SetTargetFPS(15);
+
+    //Texture2D menuTexture = LoadTexture("assets/images/TitleScreen.png");
+
+    TextureMap map = initTextures();
 
     while (!WindowShouldClose()) {
         //game loop
 
         if(menu) { 
-            drawUIMainMenu(&menu);
+            drawUIMainMenu(&menu, &map);
             continue;
         }
         drawUI();

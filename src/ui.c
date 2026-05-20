@@ -20,29 +20,41 @@ void drawUIGame() {
 
 }
 
-void drawHelp(int* state) {
+TextureMap initTextures() {
+    TextureMap tmp = {
+        LoadTexture("assets/images/TitleScreen.png"),
+        LoadTexture("assets/images/Help.png")
+    };
+    return tmp;
+}
+
+void unloadTextureMap(TextureMap* map) {
+    UnloadTexture(map->menuTexture);
+    //map->menuTexture = (Texture2D) NULL;
+    UnloadTexture(map->helpTexture);
+    //map->helpTexture = (Texture2D) NULL;
+}
+
+void drawHelp(int* state, TextureMap* map) {
     // display the game controls
 
     BeginDrawing();
-    ClearBackground(BLACK);
-    DrawText("Use <- and -> to move peice left and right", GetScreenWidth()/2-200, GetScreenHeight()/2-100, 25, RAYWHITE);
-    DrawText("Use down arrow to speed up piece", GetScreenWidth()/2-200, GetScreenHeight()/2-50, 25, RAYWHITE);
-    DrawText("Use q and e to rotate left and right", GetScreenWidth()/2-200, GetScreenHeight()/2, 25, RAYWHITE);
-    DrawText("Press x to return to menu!", GetScreenWidth()/2-200, GetScreenHeight()/2+50, 25, RAYWHITE);
+    ClearBackground(WHITE);
+    DrawTexture(map->helpTexture,0,0,WHITE);
+    // DrawText("Use <- and -> to move peice left and right", GetScreenWidth()/2-200, GetScreenHeight()/2-100, 25, RAYWHITE);
+    // DrawText("Use down arrow to speed up piece", GetScreenWidth()/2-200, GetScreenHeight()/2-50, 25, RAYWHITE);
+    // DrawText("Use q and e to rotate left and right", GetScreenWidth()/2-200, GetScreenHeight()/2, 25, RAYWHITE);
+    // DrawText("Press x to return to menu!", GetScreenWidth()/2-200, GetScreenHeight()/2+50, 25, RAYWHITE);
     if (GetKeyPressed() == KEY_X) {
         *state = 0;
     }
     EndDrawing();
 }
 
-void drawUIMainMenu(int* state) {
+void drawUIMainMenu(int* state, TextureMap* map) {
     BeginDrawing();
-    ClearBackground(BLACK);
-
-    DrawText("Tetris!", GetScreenWidth()/2-100, GetScreenHeight()/2-200, 45, RAYWHITE);
-    DrawText("Press enter to start", GetScreenWidth()/2-200, GetScreenHeight()/2-100, 25, RAYWHITE);
-    DrawText("Press h to see help", GetScreenWidth()/2-200, GetScreenHeight()/2-50, 25, RAYWHITE);
-    DrawText("Press s to see highscores", GetScreenWidth()/2-200, GetScreenHeight()/2, 25, RAYWHITE);
+    ClearBackground(RAYWHITE);
+    DrawTexture(map->menuTexture,0,0,WHITE);
     int pressed = GetKeyPressed();
     if (pressed == KEY_ENTER) {
         *state = 0;
@@ -54,7 +66,7 @@ void drawUIMainMenu(int* state) {
         }
         EndDrawing();
         while(help){
-            drawHelp(&help);
+            drawHelp(&help, map);
         }
     }
     

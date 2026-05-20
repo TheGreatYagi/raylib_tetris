@@ -8,11 +8,19 @@
 extern const int sides;
 extern const int floorCeil;
 
-void drawUIMainMenu(int* state);
+typedef struct TextureMap {
+    Texture2D menuTexture;
+    Texture2D helpTexture;
+    //Texture2D* gameTexture;
+} TextureMap;
+
+void drawUIMainMenu(int* state, TextureMap* map);
+TextureMap initTextures();
+void unloadTextureMap(TextureMap* map);
 void drawUIGame();
 void drawUIPause();
 void drawUI();
 void updateUI();
-void drawHelp(int* state);
+void drawHelp(int* state, TextureMap* map);
 
 #endif
