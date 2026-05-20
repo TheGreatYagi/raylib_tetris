@@ -12,8 +12,6 @@ int main() {
     InitWindow(width, height, "Tetris!");
     SetTargetFPS(15);
 
-    //Texture2D menuTexture = LoadTexture("assets/images/TitleScreen.png");
-
     TextureMap map = initTextures();
 
     while (!WindowShouldClose()) {
@@ -23,7 +21,7 @@ int main() {
             drawUIMainMenu(&menu, &map);
             continue;
         }
-        drawUI();
+        drawUI(&map);
 
     }
 }

@@ -3,14 +3,15 @@
 
 int help = 0;
 
-void drawUI() {
+void drawUI(TextureMap* map) {
 // this will draw the base game UI
 // Includes game window, score, next peice
     BeginDrawing();
-    ClearBackground(BLACK);
+    //ClearBackground(BLACK);
     //Define sides
-    DrawRectangle(0,0,GetScreenWidth()/4, GetScreenHeight(), BLUE);
-    DrawText("Should now be in game", GetScreenHeight()/2, GetScreenWidth()/2, 20, MAROON);
+    //DrawRectangle(0,0,GetScreenWidth()/4, GetScreenHeight(), BLUE);
+    //DrawText("Should now be in game", GetScreenHeight()/2, GetScreenWidth()/2, 20, MAROON);
+    DrawTexture(map->gameTexture,0,0,BLUE);
     EndDrawing();
 }
 
@@ -23,7 +24,8 @@ void drawUIGame() {
 TextureMap initTextures() {
     TextureMap tmp = {
         LoadTexture("assets/images/TitleScreen.png"),
-        LoadTexture("assets/images/Help.png")
+        LoadTexture("assets/images/Help.png"),
+        LoadTexture("assets/images/GameScreen.png")
     };
     return tmp;
 }
